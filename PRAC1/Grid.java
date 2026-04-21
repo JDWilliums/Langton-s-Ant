@@ -36,4 +36,25 @@ public class Grid {
             lock.unlock();
         }
     }
+
+    // Atomic race condition solve
+    public boolean flipAndReturnOldColour(Point p) {
+        Point regionCoord = getRegionCoordinate(p);
+
+        // Creates a lock for the region
+        ReentrantLock lock = regionLocks.computeIfAbsent(regionCoord, k -> new ReentrantLock());
+
+        lock.lock();
+        try {
+            boolean wasWhite = ! grid.containsKey(p);
+            if (wasWhite) {
+                grid.put(p, true); // Flip to black
+            } else {
+                grid.remove(p); // Flip to white
+            }
+            return wasWhite;
+        } finally {
+            lock.unlock();
+        }
+    }
 }
