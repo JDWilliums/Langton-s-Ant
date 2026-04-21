@@ -18,7 +18,7 @@ public class Ant {
         return direction;
     }
 
-    public void step(boolean isWhiteCell) {
+    public void step(boolean isWhiteCell) { // Turning
         if (isWhiteCell) {
             direction = direction.turnRight();
         } else {
