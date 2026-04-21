@@ -1,5 +1,6 @@
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.Set;
 
 public class Grid {
     // We store only the black cells (sparse data structure)
@@ -12,6 +13,10 @@ public class Grid {
         int regionX = p.x() / REGION_SIZE;
         int regionY = p.y() / REGION_SIZE;
         return new Point(regionX, regionY);
+    }
+
+    public Set<Point> getBlackCells() {
+        return grid.keySet();
     }
 
     public boolean isWhite(Point p) {

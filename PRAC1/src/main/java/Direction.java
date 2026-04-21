@@ -1,3 +1,4 @@
+
 public enum Direction {
     UP, RIGHT, DOWN, LEFT; // Order is important for turning logic
 
